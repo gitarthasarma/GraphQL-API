@@ -1,0 +1,40 @@
+version: '3.8'
+services: 
+  mysqldb:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+    
+  app:
+      build:
+        context: .
+      env_file: ./.env
+      command: sh -c "chmod +x ./wait-for-it.sh && ./wait-for-it.sh mysqldb:3306 -t 300 && npm start"
+      volumes: 
+        - .:/app/
+        - /app/node_modules
+      ports:
+        - "5000:5000"
+      depends_on: 
+        - mysqldb
+      environment:
+        DB_HOST: mysqldb
+        DB_USER: 'user'
+        DB_PASSWORD: 'password'
+        DB_NAME: 'db'
+        DB_PORT: '3306'
+
+
+volumes:
+  my-db:
+
