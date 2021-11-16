@@ -21,9 +21,7 @@ This is a simple graphql api created for shopkeepers to store invoice details.
 
 ## Schema for the database
 
-<figure>
-    <iframe width="560" height="315" src='https://dbdiagram.io/embed/616c0c0d940c4c4eec991576'> </iframe>
-</figure>
+![schema](./schema.png)
 
 ## Documentation
 
