@@ -1,6 +1,6 @@
 # GraphQL API
 
-This is a simple graphql api created for shopkeepers to store invoice details.
+This is an api created for shopkeepers to store invoice details built using GraphQL library of nodejs.
 
 ## Technology used
 
